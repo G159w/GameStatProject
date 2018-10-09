@@ -1,0 +1,11 @@
+﻿<Application
+    x:Class="DotNetProjectUwp.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DotNetProjectUwp"
+    xmlns:viewModels="using:DotNetProjectUwp.ViewModels"
+    RequestedTheme="Light">
+    <Application.Resources>
+        <viewModels:ViewModelLocator xmlns:vm="using;DotNetProjectUwp.ViewModels" x:Key="Locator" />
+    </Application.Resources>
+</Application>

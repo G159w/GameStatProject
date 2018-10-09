@@ -1,0 +1,66 @@
+﻿<Page
+    x:Class="DotnetProjectUwp.Views.Profile.FriendsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DotnetProjectUwp.Views.Profile"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding FriendInstance, Source={StaticResource Locator}}"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <AcrylicBrush x:Key="HostBackdropBrush"
+                      BackgroundSource="HostBackdrop"
+                      TintColor="LightGray"
+                      TintOpacity="0.6"
+                      FallbackColor="Gray"/>
+    </Page.Resources>
+
+    <Grid Name="SearchPageLayout" Background="{ThemeResource HostBackdropBrush}">
+        <ScrollViewer>
+            <StackPanel>
+                <TextBlock Text="Profil"
+                           FontSize="24"
+                           FontWeight="SemiLight"
+                           Margin="22,22,12,0"/>
+                <TextBlock Text="{Binding UserResponse.Username}"
+                           FontSize="24"
+                           HorizontalAlignment="Center"
+                           FontWeight="Bold"
+                           Margin="22,22,12,0"/>
+                <StackPanel Grid.Column="0">
+                        <TextBlock Text="Jeux"
+                               FontSize="20"
+                               HorizontalAlignment="Left"
+                               FontWeight="Bold"
+                               Margin="22,22,12,10"/>
+                    <ItemsControl ItemsSource="{Binding OwnedGames}" Margin="20">
+                        <ItemsControl.ItemTemplate >
+                            <DataTemplate>
+                                <Button Command="{Binding DataContext.GameCommand, ElementName=SearchPageLayout}" HorizontalContentAlignment="Stretch"
+                                        CommandParameter="{Binding}" Width="300" Margin="5">
+                                    <Grid >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Grid.Column="0" Source="{Binding Source}" Width="40"></Image>
+                                        <TextBlock Grid.Column="1" Text="{Binding Name}" VerticalAlignment="Center"></TextBlock>
+                                    </Grid>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <ProgressRing Height="40" Width="40" IsActive="{Binding IsLoading}"></ProgressRing>
+                    <TextBlock Text="{Binding Status}" VerticalAlignment="Top"
+                               FontSize="20"
+                               HorizontalAlignment="Center"
+                               FontWeight="SemiLight"
+                               Margin="22,22,12,0"/>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

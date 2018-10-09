@@ -1,0 +1,122 @@
+﻿<Page
+    x:Class="DotnetProjectUwp.Views.Games.FornitePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DotnetProjectUwp.Views.Games"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding ForniteInstance, Source={StaticResource Locator}}"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <AcrylicBrush x:Key="HostBackdropBrush"
+                      BackgroundSource="HostBackdrop"
+                      TintColor="LightGray"
+                      TintOpacity="0.6"
+                      FallbackColor="Gray"/>
+
+        <AcrylicBrush x:Key="ItemListBackGround"
+                      BackgroundSource="HostBackdrop"
+                      TintColor="#A6A4A4"
+                      TintOpacity="0.6"
+                      FallbackColor="#A6A4A4"/>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource HostBackdropBrush}">
+        <ScrollViewer>
+        <StackPanel>
+            <TextBlock Text="Fortnite"
+                   FontSize="24"
+                   FontWeight="SemiLight"
+                   Margin="22,22,12,0"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                <Image Source="../../Assets/Fortnite_Icon.png" Height="80"></Image>
+                <TextBlock Text="{Binding UserName}"
+                       FontSize="24"
+                       HorizontalAlignment="Center"
+                       FontWeight="Bold"
+                       Margin="22,22,12,0"/>
+            </StackPanel>
+
+            <ScrollViewer>
+                <Grid Margin="22" MinHeight="500">
+                    <Grid.Transitions>
+                        <TransitionCollection>
+                            <EntranceThemeTransition/>
+                        </TransitionCollection>
+                    </Grid.Transitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock FontWeight="Bold" FontSize="18" Text="Results" Grid.Column="1" Grid.Row="0"></TextBlock>
+
+                    <TextBlock FontWeight="Bold" Text="Solo Top1" Grid.Column="0" Grid.Row="1"></TextBlock>
+                    <TextBlock Text="{Binding StatsResponse.SoloTop1}" Grid.Column="1" Grid.Row="1"></TextBlock>
+
+                    <TextBlock FontWeight="Bold" Text="Solo Top10" Grid.Column="0" Grid.Row="2"></TextBlock>
+                    <TextBlock Text="{Binding StatsResponse.SoloTop10}" Grid.Column="1" Grid.Row="2"></TextBlock>
+
+                    <TextBlock FontWeight="Bold" Text="Solo Top25" Grid.Column="0" Grid.Row="3"></TextBlock>
+                    <TextBlock Text="{Binding StatsResponse.SoloTop25}" Grid.Column="1" Grid.Row="3"></TextBlock>
+
+                    <TextBlock FontWeight="Bold" Text="Duo Top1" Grid.Column="0" Grid.Row="4"></TextBlock>
+                    <TextBlock Text="{Binding StatsResponse.DuoTop1}" Grid.Column="1" Grid.Row="4"></TextBlock>
+                    <TextBlock FontWeight="Bold" Text="Duo Top25" Grid.Column="0" Grid.Row="5"></TextBlock>
+                    <TextBlock Text="{Binding StatsResponse.DuoTop5}" Grid.Column="1" Grid.Row="5"></TextBlock>
+                    <TextBlock FontWeight="Bold" Text="Duo Top12" Grid.Column="0" Grid.Row="6"></TextBlock>
+                    <TextBlock Text="{Binding StatsResponse.DuoTop12}" Grid.Column="1" Grid.Row="6"></TextBlock>
+
+                    <TextBlock FontWeight="Bold" Text="Squad Top1" Grid.Column="0" Grid.Row="7"></TextBlock>
+                    <TextBlock Text="{Binding StatsResponse.SquadTop1}" Grid.Column="1" Grid.Row="7"></TextBlock>
+                    <TextBlock FontWeight="Bold" Text="Squad Top3" Grid.Column="0" Grid.Row="8"></TextBlock>
+                    <TextBlock Text="{Binding StatsResponse.SquadTop3}" Grid.Column="1" Grid.Row="8"></TextBlock>
+                    <TextBlock FontWeight="Bold" Text="Squad Top6" Grid.Column="0" Grid.Row="9"></TextBlock>
+                    <TextBlock Text="{Binding StatsResponse.SquadTop6}" Grid.Column="1" Grid.Row="9"></TextBlock>
+
+                    <TextBlock FontWeight="Bold" Text="Kd" Grid.Column="0" Grid.Row="10"></TextBlock>
+                    <TextBlock Text="{Binding StatsResponse.Kd}" Grid.Column="1" Grid.Row="10"></TextBlock>
+
+                    <TextBlock FontWeight="Bold" Text="Kills" Grid.Column="0" Grid.Row="11"></TextBlock>
+                    <TextBlock Text="{Binding StatsResponse.Kills}" Grid.Column="1" Grid.Row="11"></TextBlock>
+
+                    <TextBlock FontWeight="Bold" Text="Matches" Grid.Column="0" Grid.Row="12"></TextBlock>
+                    <TextBlock Text="{Binding StatsResponse.Matches}" Grid.Column="1" Grid.Row="12"></TextBlock>
+
+                    <TextBlock FontWeight="Bold" Text="Wins" Grid.Column="0" Grid.Row="13"></TextBlock>
+                    <TextBlock Text="{Binding StatsResponse.Wins}" Grid.Column="1" Grid.Row="13"></TextBlock>
+
+                    <TextBlock FontWeight="Bold" Text="Win%" Grid.Column="0" Grid.Row="14"></TextBlock>
+                    <TextBlock Text="{Binding StatsResponse.WinsPercent}" Grid.Column="1" Grid.Row="14"></TextBlock>
+                    </Grid>
+            </ScrollViewer>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <ProgressRing Height="40" Width="40" IsActive="{Binding IsLoading}"></ProgressRing>
+                <TextBlock Text="{Binding Status}" VerticalAlignment="Top"
+                           FontSize="20"
+                           HorizontalAlignment="Center"
+                           FontWeight="SemiLight"
+                           Margin="22,22,12,0"/>
+            </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+
+</Page>

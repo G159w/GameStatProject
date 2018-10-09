@@ -1,0 +1,91 @@
+﻿<Page
+    x:Class="DotnetProjectUwp.Views.Profile.ConnexionPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DotNetProjectUwp.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding ConnexionInstance, Source={StaticResource Locator}}">
+
+    <Page.Resources>
+        <AcrylicBrush x:Key="HostBackdropBrush"
+                      BackgroundSource="HostBackdrop"
+                      TintColor="LightGray"
+                      TintOpacity="0.6"
+                      FallbackColor="Gray"/>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource HostBackdropBrush}">
+        <ScrollViewer>
+            <StackPanel>
+                <TextBlock Text="Connexion"
+                           FontSize="24"
+                           FontWeight="SemiLight"
+                           Margin="22,22,12,0"/>
+                <Grid  VerticalAlignment="Top" HorizontalAlignment="Left"
+                   MinWidth="400" Height="200" Margin="25">
+                    <Grid.Transitions>
+                        <TransitionCollection>
+                            <EntranceThemeTransition/>
+                        </TransitionCollection>
+                    </Grid.Transitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="2.3*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text = "Pseudo:" 
+                           Grid.Row="0"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"/>
+
+                    <TextBox
+                    HorizontalAlignment="Left" VerticalAlignment = "Center"
+                    Width = "280" 
+                    Grid.Row="0"
+                    PlaceholderText="Entrez votre pseudo"
+                    Grid.Column="1"
+                    Text="{Binding UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBlock Text = "Password:" 
+                           Grid.Row="1"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"/>
+
+                    <PasswordBox 
+                            HorizontalAlignment="Left" VerticalAlignment = "Center"
+                            PasswordRevealMode="Hidden"
+                            IsPasswordRevealButtonEnabled="True"
+                            Password="{Binding Password, Mode=TwoWay}"
+                            Width = "280" 
+                            Grid.Row="1"
+                            Grid.Column="1"/>
+                    <StackPanel Orientation="Horizontal"
+                        Grid.Column="1"
+                        HorizontalAlignment="Right"
+                        Grid.Row="2">
+                        <Button Content="Inscription"
+                                Margin="5"
+                                Command="{Binding InscriptionCommand}"/>
+                        <Button Content="Connexion"
+                                Command="{Binding ConnexionCommand}"/>
+                    </StackPanel>
+                </Grid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <ProgressRing Height="40" Width="40" IsActive="{Binding IsLoading}"></ProgressRing>
+                    <TextBlock Text="{Binding Status}" VerticalAlignment="Top"
+                               FontSize="20"
+                               HorizontalAlignment="Center"
+                               FontWeight="SemiLight"
+                               Margin="22,22,12,0"/>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

@@ -1,0 +1,52 @@
+﻿<Page
+    x:Class="DotNetProjectUwp.Views.LeaderboardPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DotNetProjectUwp.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding LeaderboardsInstance, Source={StaticResource Locator}}"
+    mc:Ignorable="d">
+    
+    <Page.Resources>
+        <AcrylicBrush x:Key="HostBackdropBrush"
+                      BackgroundSource="HostBackdrop"
+                      TintColor="LightGray"
+                      TintOpacity="0.6"
+                      FallbackColor="Gray"/>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource HostBackdropBrush}">
+        <StackPanel>
+        <TextBlock Text="Leaderboard"
+                   FontSize="24"
+                   FontWeight="SemiLight"
+                   Margin="22,22,12,0"
+                   ></TextBlock>
+        <Pivot Margin="12">
+            <PivotItem Header="League of Legends">
+                <UserControl Content="{Binding LolLeaderboardPage}"/>
+            </PivotItem>
+            <PivotItem Header="Fortnite">
+                <UserControl Content="{Binding FortniteLeaderboardPage}"/>
+            </PivotItem>
+            <PivotItem Header="Guild Wars 2">
+                <UserControl Content="{Binding Gw2LeaderboardPage}"/>
+            </PivotItem>
+            <PivotItem Header="Rainbow Six">
+                <UserControl Content="{Binding R6LeaderboardPage}"/>
+            </PivotItem>
+            <PivotItem Header="Elite">
+                    <UserControl Content="{Binding EliteLeaderboard}"/>
+            </PivotItem>
+            </Pivot>
+        <ContentControl x:Name="ContentHost" >
+            <ContentControl.ContentTransitions>
+                <TransitionCollection>
+                    <ContentThemeTransition />
+                </TransitionCollection>
+            </ContentControl.ContentTransitions>
+        </ContentControl>
+        </StackPanel>
+    </Grid>
+</Page>
